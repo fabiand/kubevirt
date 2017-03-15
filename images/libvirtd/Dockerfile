@@ -26,8 +26,8 @@ RUN augtool -f /augconf
 # by race conditions)
 RUN ln -s /usr/bin/qemu-system-x86_64 /usr/local/bin/qemu-x86_64
 
-COPY libvirtd.sh /libvirtd.sh
-RUN chmod a+x /libvirtd.sh
+COPY run-libvirtd.sh /run-libvirtd.sh
+RUN chmod a+x /run-libvirtd.sh
 #EXPOSE 16509
 
-CMD ["/libvirtd.sh"]
+CMD ["/run-libvirtd.sh"]

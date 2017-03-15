@@ -87,6 +87,20 @@ $ kubectl run --rm -it qemu-test --image=kubevirt/libvirtd -- \
 ```
 
 
+## Exporting host paths as LUNs
+
+Sometimes OS images are large or block devices., such that you do not want
+to make them part of the demo image. In that case you can set
+the `EXPORT_HOST_DEVICE` environment variable to directly reference a path
+on the host.
+For this to work you obviously also need to bind mount in the host root
+(`/`) into the `/host` path inside the container.
+
+You can for example use `EXPORT_HOST_DEVICE=/dev/sda /home/alice/beos.img`
+to export `dev/sda` and `/home/alice/beos.img` from the host.
+Assuming that `/host` inside the container points to `/` on the host.
+
+
 # Known issues
 
 ## It's not production ready
