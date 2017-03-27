@@ -13,11 +13,11 @@ fi
 if [ "x$1" == "xspice" ]; then
         viewer=${SPICE_VIEWER:-remote\-viewer}
         if [ "x$3" == "x--details" ]; then
-            curl http://${master_ip}:8184/apis/kubevirt.io/v1alpha1/namespaces/default/vms/$2/spice  -H"Accept:text/plain"
+            curl -s http://${master_ip}:8184/apis/kubevirt.io/v1alpha1/namespaces/default/vms/$2/spice  -H"Accept:text/plain"
         else
-            curl http://${master_ip}:8184/apis/kubevirt.io/v1alpha1/namespaces/default/vms/$2/spice > ${KUBEVIRT_PATH}cluster/.console.vv  -H"Accept:text/plain"
+            curl -s http://${master_ip}:8184/apis/kubevirt.io/v1alpha1/namespaces/default/vms/$2/spice > ${KUBEVIRT_PATH}cluster/.console.vv  -H"Accept:text/plain"
             echo $viewer
-            $viewer ${KUBEVIRT_PATH}cluster/.console.vv
+            $viewer ${KUBEVIRT_PATH}cluster/.console.vv 2> .spice.err.log
         fi
         exit
 fi
