@@ -1,0 +1,111 @@
+apiVersion: kubevirt.io/v1alpha1
+kind: VM
+metadata:
+  name: testwinvm
+spec:
+  domain:
+    devices:
+      graphics:
+      - autoPort: "yes"
+        defaultMode: any
+        type: spice
+      interfaces:
+      - source:
+          network: default
+        type: network
+        model:
+          type: rtl8139
+      video:
+      - Model:
+          VGAMem: 16384
+          heads: 1
+          ram: 65536
+          type: qxl
+          vram: 65536
+          primary: yes
+      disks:
+      - type: network
+        snapshot: external
+        device: disk
+        driver:
+          name: qemu
+          type: qcow2
+        source:
+          host:
+            name: iscsi-demo-target
+            port: "3260"
+          protocol: iscsi
+          name: iqn.2017-01.io.kubevirt:sn.42/4
+        target:
+          dev: hda
+          bus: ide
+      serials:
+      - type: pty
+        target:
+          port: 0
+      consoles:
+      - type: pty
+        target:
+          type: serial
+          port: 0
+      acontrollers:
+        - type: usb
+          index: 0
+          model: ich9-ehci1
+          address:
+            type: pci
+            domain: 0x0000
+            bus: 0x00
+            slot: 0x06
+            function: 0x07
+        - type: usb
+          index: 0
+          model: ich9-uhci1
+          address:
+            type: pci
+            domain: 0x0000
+            bus: 0x00
+            slot: 0x06
+            function: 0x0
+            multifunction: on
+        - type: usb
+          index: 0
+          model: ich9-uhci2
+          address:
+            type: pci
+            domain: 0x0000
+            bus: 0x00
+            slot: 0x06
+            function: 0x1
+        - type: usb
+          index: 0
+          model: ich9-uhci3
+          address:
+            type: pci
+            domain: 0x0000
+            bus: 0x00
+            slot: 0x06
+            function: 0x2
+        - type: pci
+          index: 0
+          model: pci-root
+        - type: ide
+          index: 0
+          address:
+            type: pci
+            domain: 0x0000
+            bus: 0x00
+            slot: 0x01
+            function: 0x1
+    memory:
+      unit: GB
+      value: 2
+    name: testwinvm
+    os:
+      type:
+        os: hvm
+        arch: x86_64
+    cpu:
+      model:
+        value: Broadwell
+    type: qemu
