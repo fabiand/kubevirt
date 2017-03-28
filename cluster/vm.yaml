@@ -33,7 +33,7 @@ spec:
             name: iscsi-demo-target
             port: "3260"
           protocol: iscsi
-          name: iqn.2017-01.io.kubevirt:sn.42/2
+          name: iqn.2017-01.io.kubevirt:sn.42/4
         target:
           dev: vda
       serials:
@@ -46,8 +46,8 @@ spec:
           type: serial
           port: 0
     memory:
-      unit: MB
-      value: 64
+      unit: GB
+      value: 2
     name: testvm
     os:
       type:
