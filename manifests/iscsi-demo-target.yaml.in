@@ -124,7 +124,7 @@ spec:
             mountPath: /host
           env:
             - name: EXPORT_HOST_PATHS
-              value: /var/tmp/fedora.iso
+              value: /var/tmp/fedora.iso /var/tmp/win.iso
       volumes:
         - name: host
           hostPath:
