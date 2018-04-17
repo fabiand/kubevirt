@@ -201,7 +201,7 @@ func (t *templateService) RenderLaunchManifest(vm *v1.VirtualMachine) (*kubev1.P
 	// TODO use constants for labels
 	pod := kubev1.Pod{
 		ObjectMeta: metav1.ObjectMeta{
-			GenerateName: "virt-launcher-" + domain + "-",
+			GenerateName: domain + "-",
 			Labels: map[string]string{
 				v1.AppLabel:    "virt-launcher",
 				v1.DomainLabel: domain,

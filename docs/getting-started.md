@@ -114,7 +114,7 @@ NAME                              READY     STATUS    RESTARTS   AGE
 virt-api                          1/1       Running   1          10h
 virt-controller                   1/1       Running   1          10h
 virt-handler-z90mp                1/1       Running   1          10h
-virt-launcher-vm-ephemeral9q7es   1/1       Running   0          10s
+vm-ephemeral9q7es                 1/1       Running   0          10s
 
 $ ./cluster/kubectl.sh get vms
 NAME           LABELS                        DATA
